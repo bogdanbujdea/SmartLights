@@ -1,0 +1,23 @@
+﻿@using SmartLights.Components;
+@using SmartLights.Converters
+
+<StyleSheet Resource="Styles/BlazorStyles.css" Assembly="GetType().Assembly"></StyleSheet>
+<ContentView>
+    <ScrollView>
+        <StackLayout Margin="new Thickness(10)">
+            <Label Text="@("There are " + Lights.Count + " lights")"></Label>
+            @foreach (var light in Lights)
+            {
+                <StackLayout Orientation="@StackOrientation.Horizontal">
+                    <Button class="color-button" OnClick="@(c => ChangeColor(light))" BackgroundColor="@light.Color.ToXFColor()"></Button>
+                    <Label class="light" Text="@light.Name"></Label>
+                    <Switch class="light-switch" @bind-IsToggled="@light.IsOn"></Switch>
+                </StackLayout>
+            }
+            @if (IsColorPickerVisible)
+            {
+                <ColorPicker SelectedLight="@SelectedLight" />
+            }
+        </StackLayout>
+    </ScrollView>
+</ContentView>

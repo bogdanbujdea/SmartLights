@@ -1,0 +1,27 @@
+﻿.light {
+    color: white;
+    font-size: 14;
+    width: 200;
+    vertical-align: center;
+}
+
+.light-switch {
+    -xf-thumb-color: #383c45;
+    vertical-align: center;
+}
+
+.color-button {
+    border-radius: 30;
+    height: 30;
+    width: 30;
+    vertical-align: center;
+}
+
+entry {
+    color: white;
+    width: 50;
+}
+
+slider {
+    width: 150;
+}

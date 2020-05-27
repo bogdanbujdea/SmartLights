@@ -1,0 +1,16 @@
+﻿@using SmartLights.Converters
+<StackLayout Margin="new Thickness(10)">
+    <StackLayout Orientation="@StackOrientation.Horizontal">
+        <Entry Text="@(SelectedLight.Color.Red.ToString())"></Entry>
+        <Slider Minimum="0" Maximum="255"@bind-Value="@SelectedLight.Color.Red" MinimumTrackColor="@Color.Red"></Slider>
+    </StackLayout>
+    <StackLayout Orientation="@StackOrientation.Horizontal">
+        <Entry Text="@SelectedLight.Color.Green.ToString()"></Entry>
+        <Slider Minimum="0" Maximum="255" @bind-Value="@SelectedLight.Color.Green" MinimumTrackColor="@Color.Green"></Slider>
+    </StackLayout>
+    <StackLayout Orientation="@StackOrientation.Horizontal">
+        <Entry Text="@SelectedLight.Color.Blue.ToString()"></Entry>
+        <Slider Minimum="0" Maximum="255" @bind-Value="@SelectedLight.Color.Blue" MinimumTrackColor="@Color.Blue"></Slider>
+    </StackLayout>
+    <Button HorizontalOptions="@LayoutOptions.Center" OnClick="ApplyColor" Text="Save"></Button>
+</StackLayout>

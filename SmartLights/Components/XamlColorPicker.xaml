@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:SmartLights.Converters;assembly=SmartLights"
+             xmlns:styles="clr-namespace:SmartLights.Styles;assembly=SmartLights"
+             mc:Ignorable="d"
+             x:Class="SmartLights.Components.XamlColorPicker">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:XamlStyles/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout Margin="10">
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Source={x:Reference RedSlider}, Path=Value}"></Entry>
+                <Slider x:Name="RedSlider" Minimum="0" Maximum="255" WidthRequest="255" Value="{Binding SelectedLight.Color.Red, Mode=TwoWay}" MinimumTrackColor="Red"></Slider>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Source={x:Reference GreenSlider}, Path=Value}"></Entry>
+                <Slider x:Name="GreenSlider" Minimum="0" Maximum="255" WidthRequest="255" Value="{Binding SelectedLight.Color.Green, Mode=TwoWay}" MinimumTrackColor="Green"></Slider>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding Source={x:Reference BlueSlider}, Path=Value}"></Entry>
+                <Slider x:Name="BlueSlider" Minimum="0" Maximum="255" WidthRequest="255" Value="{Binding SelectedLight.Color.Blue, Mode=TwoWay}" MinimumTrackColor="Blue"></Slider>
+            </StackLayout>
+            <Button Clicked="ApplyColor" Text="Save" BackgroundColor="{Binding SelectedLight.Color, Converter={StaticResource ColorToXFColor}}"></Button>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

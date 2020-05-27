@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="SmartLights.Styles.XamlStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:SmartLights.Converters;assembly=SmartLights">
+    <converters:ColorToXFColor x:Key="ColorToXFColor" />
+    <Style x:Key="LightSwitchStyle" TargetType="Switch" >
+        <Setter Property="ThumbColor" Value="#383c45"></Setter>
+        <Setter Property="VerticalOptions" Value="Center"></Setter>
+    </Style>
+    <Style x:Key="ColorButtonStyle" TargetType="Button" >
+        <Setter Property="CornerRadius" Value="30"></Setter>
+        <Setter Property="HeightRequest" Value="30"></Setter>
+        <Setter Property="WidthRequest" Value="30"></Setter>
+        <Setter Property="VerticalOptions" Value="Center"></Setter>
+    </Style>
+    <Style x:Key="LightLabelStyle" TargetType="Label" >
+        <Setter Property="TextColor" Value="White"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="WidthRequest" Value="200"></Setter>
+        <Setter Property="VerticalOptions" Value="Center"></Setter>
+    </Style>
+</ResourceDictionary>

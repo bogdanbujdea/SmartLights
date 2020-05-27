@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:components="clr-namespace:SmartLights.Components;assembly=SmartLights"
+             xmlns:styles="clr-namespace:SmartLights.Styles;assembly=SmartLights"
+             BackgroundColor="#532676"
+             mc:Ignorable="d"
+             x:Name="Root"
+             x:Class="SmartLights.Pages.XamlHomePage">
+    <ContentPage.BindingContext>
+        <x:Reference Name="Root" />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:XamlStyles/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label FontSize="12">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="There are "></Span>
+                        <Span Text="{Binding Lights.Count}"></Span>
+                        <Span Text=" devices"></Span>
+                    </FormattedString>
+            </Label.FormattedText>
+            </Label>
+            <ListView ItemsSource="{Binding Lights}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Button 
+                                    Style="{StaticResource ColorButtonStyle}"
+                                    Clicked="ChangeColor"
+                                    BackgroundColor="{Binding Color, Converter={StaticResource ColorToXFColor}}">
+                                </Button>
+                                <Label 
+                                    Style="{StaticResource LightLabelStyle}"
+                                    Text="{Binding Name}">
+                                </Label>
+                                <Switch 
+                                    Style="{StaticResource LightSwitchStyle}"
+                                    IsToggled="{Binding IsOn}" Toggled="ToggleLight">
+                                </Switch>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <components:XamlColorPicker SelectedLight="{Binding SelectedLight, Mode=TwoWay}" IsVisible="{Binding LightIsSelected}"></components:XamlColorPicker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
