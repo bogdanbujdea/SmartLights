@@ -2,7 +2,6 @@
 {
     class Consts
     {
-        public static string Token =
-            "<put your home assistant token here>";
+        public static string Token = ""; // insert your HA token here if you have one
     }
 }

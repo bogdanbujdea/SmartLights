@@ -25,10 +25,24 @@ namespace HomeAssistant
             }
         }
 
+        /// <summary>
+        /// You can just return a list of lights if you don't have a Home Assistant integration
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<Light>> GetLights()
         {
             try
             {
+                if (string.IsNullOrEmpty(Consts.Token))
+                {
+                    return new List<Light>
+                    {
+                        new Light{Color = new LightColor(255, 0, 0), Id = "1", IsOn = true, Name = "Office"},
+                        new Light{Color = new LightColor(255, 255, 0), Id = "2", IsOn = true, Name = "Bedroom"},
+                        new Light{Color = new LightColor(255, 0, 255), Id = "3", IsOn = true, Name = "Kitchen"},
+                        new Light{Color = new LightColor(255, 255, 255), Id = "4", IsOn = false, Name = "Bathroom"},
+                    };
+                }
                 if (!ClientFactory.IsInitialized)
                 {
                     await Initialize();
@@ -79,6 +93,10 @@ namespace HomeAssistant
         {
             try
             {
+                if (string.IsNullOrEmpty(Consts.Token))
+                {
+                    return await Task.FromResult(LightColor.Default);
+                }
                 var statesClient = ClientFactory.GetClient<StatesClient>();
                 var state = await statesClient.GetState(entityId).ConfigureAwait(false);
                 if (state.Attributes.ContainsKey("rgb_color"))
@@ -102,6 +120,10 @@ namespace HomeAssistant
 
         public static async Task ChangeColor(string entityId, LightColor computedColor)
         {
+            if (string.IsNullOrEmpty(Consts.Token))
+            {
+                return;
+            }
             var serviceClient = ClientFactory.GetClient<ServiceClient>();
             var data = new
             {
@@ -115,6 +137,10 @@ namespace HomeAssistant
 
         public static async Task ToggleLight(string lightId)
         {
+            if (string.IsNullOrEmpty(Consts.Token))
+            {
+                return;
+            }
             var serviceClient = ClientFactory.GetClient<ServiceClient>();
             var data = new
             {
